@@ -1,8 +1,8 @@
-package com.codurance;
+package com.codurance.validation;
 
 import java.util.List;
 
-public class NumberStartsAtOneRule implements ValidationRule {
+public class NumbersStartFromOneRule implements ValidationRule {
     @Override
     public boolean validate(List<Integer> numberSequence) {
         return numberSequence.stream().findFirst().get() == 1;

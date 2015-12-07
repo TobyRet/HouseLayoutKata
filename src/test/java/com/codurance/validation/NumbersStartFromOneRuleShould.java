@@ -1,19 +1,25 @@
-package com.codurance;
+package com.codurance.validation;
 
 import java.util.Arrays;
 import java.util.List;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
 
-public class NumberingStartsAtOneRuleShould {
+public class NumbersStartFromOneRuleShould {
+
+    private NumbersStartFromOneRule numberingStartsAtOneRule;
+
+    @Before
+    public void setUp() {
+        numberingStartsAtOneRule = new NumbersStartFromOneRule();
+    }
 
     @Test
     public void returnTrueIfHouseNumberingStartsAtOne() {
-        NumberStartsAtOneRule numberingStartsAtOneRule = new NumberStartsAtOneRule();
-
         List<Integer> correctNumberSequence = Arrays.asList(1, 3, 2, 5, 4);
 
         assertThat(numberingStartsAtOneRule.validate(correctNumberSequence), is(true));
@@ -21,10 +27,8 @@ public class NumberingStartsAtOneRuleShould {
 
     @Test
     public void returnFalseIfHouseNumberingDoesNotStartAtOne() {
-        NumberStartsAtOneRule numberingStartsAtOneRule = new NumberStartsAtOneRule();
+        List<Integer> incorrectNumberSequence = Arrays.asList(3, 2, 5, 4);
 
-        List<Integer> correctNumberSequence = Arrays.asList(3, 2, 5, 4);
-
-        assertThat(numberingStartsAtOneRule.validate(correctNumberSequence), is(false));
+        assertThat(numberingStartsAtOneRule.validate(incorrectNumberSequence), is(false));
     }
 }

@@ -1,4 +1,4 @@
-package com.codurance;
+package com.codurance.validation;
 
 import java.util.List;
 

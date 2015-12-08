@@ -1,12 +1,12 @@
-package com.codurance.validation;
+package com.codurance.rules;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class OddNumbersAreSequentialRule implements ValidationRule {
+public class EvenNumbersAreSequentialRule implements ValidationRule {
     @Override
     public boolean validate(List<Integer> numberSequence) {
-        List<Integer> oddNumbers = filterOddNumbers(numberSequence);
+        List<Integer> oddNumbers = filterEvenNumbers(numberSequence);
 
         boolean isSequential = true;
 
@@ -19,10 +19,10 @@ public class OddNumbersAreSequentialRule implements ValidationRule {
         return isSequential;
     }
 
-    private List<Integer> filterOddNumbers(List<Integer> numberSequence) {
+    private List<Integer> filterEvenNumbers(List<Integer> numberSequence) {
         return numberSequence
                 .stream()
-                .filter(number -> number % 2 == 1)
+                .filter(number -> number % 2 == 0)
                 .collect(Collectors.toList());
     }
 }

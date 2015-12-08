@@ -1,4 +1,4 @@
-package com.codurance.validation;
+package com.codurance.rules;
 
 import java.util.HashSet;
 import java.util.List;

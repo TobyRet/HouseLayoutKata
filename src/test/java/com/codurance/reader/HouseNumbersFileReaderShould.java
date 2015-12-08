@@ -13,7 +13,7 @@ public class HouseNumbersFileReaderShould {
     public void convertAFileToHouseNumbersObject() {
         HouseNumbersFileReader houseNumbersFileReader = new HouseNumbersFileReader();
         String pathToFile = "houseNumbers.txt";
-        HouseNumbers expectedHouseNumbers = new HouseNumbers(asList(1,2,3,4,5));
+        HouseNumbers expectedHouseNumbers = new HouseNumbers(asList(1, 2, 3, 4, 5));
 
         assertThat(houseNumbersFileReader.read(pathToFile), is(expectedHouseNumbers));
     }

@@ -13,7 +13,7 @@ public class HouseNumbersValidator {
     }
 
 
-    public boolean validate(HouseNumbers houseNumbers){
+    public boolean validate(HouseNumbers houseNumbers) {
         List<Boolean> validationChecks = new ArrayList();
 
         validationRules.get().stream()

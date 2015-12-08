@@ -20,7 +20,7 @@ public class OddNumbersAreSequentialRuleShould {
 
     @Test
     public void returnFalseIfOddNumbersAreNonSequential() {
-        List<Integer> nonSequentialOddNumbersList = Arrays.asList(1,5,2,4,3);
+        List<Integer> nonSequentialOddNumbersList = Arrays.asList(1, 5, 2, 4, 3);
 
         assertThat(oddNumbersAreSequentialRule.validate(new HouseNumbers(nonSequentialOddNumbersList)), is(false));
     }

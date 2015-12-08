@@ -2,13 +2,12 @@ package com.codurance.validator;
 
 import java.util.List;
 import com.codurance.housenumbers.HouseNumbers;
-import com.codurance.rules.EvenNumbersAreSequentialRule;
-import com.codurance.rules.NumbersStartFromOneRule;
-import com.codurance.rules.OddNumbersAreSequentialRule;
-import com.codurance.rules.UniqueNumbersRule;
-import com.codurance.rules.ValidationRule;
-import com.codurance.rules.ValidationRules;
-import com.codurance.validation.HouseNumberValidator;
+import com.codurance.validator.rules.EvenNumbersAreSequentialRule;
+import com.codurance.validator.rules.NumbersStartFromOneRule;
+import com.codurance.validator.rules.OddNumbersAreSequentialRule;
+import com.codurance.validator.rules.UniqueNumbersRule;
+import com.codurance.validator.rules.ValidationRule;
+import com.codurance.validator.rules.ValidationRules;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -40,7 +39,7 @@ public class HouseNumberValidatorShould {
 
     @Test
     public void returnFalseIfNumberSequenceInvalid() {
-        HouseNumberValidator numberValidator = new HouseNumberValidator(validationRules);
+        HouseNumbersValidator numberValidator = new HouseNumbersValidator(validationRules);
         List<Integer> houseNumbersDoNotStartAtOne = asList(2, 4, 1, 3, 5);
         HouseNumbers houseNumbers = new HouseNumbers(houseNumbersDoNotStartAtOne);
 
@@ -61,7 +60,7 @@ public class HouseNumberValidatorShould {
 
     @Test
     public void returnTrueIfNumberSequenceIsValid() {
-        HouseNumberValidator numberValidator = new HouseNumberValidator(validationRules);
+        HouseNumbersValidator numberValidator = new HouseNumbersValidator(validationRules);
         List<Integer> houseNumbersDoNotStartAtOne = asList(2, 4, 1, 3, 5);
         HouseNumbers houseNumbers = new HouseNumbers(houseNumbersDoNotStartAtOne);
 

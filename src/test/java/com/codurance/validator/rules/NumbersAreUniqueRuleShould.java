@@ -27,7 +27,7 @@ public class NumbersAreUniqueRuleShould {
 
     @Test
     public void returnTrueIfNumbersAreUnique() {
-        List<Integer> listWithUniqueNumbers = asList(1,2,3,4,5);
+        List<Integer> listWithUniqueNumbers = asList(1, 2, 3, 4, 5);
 
         assertThat(uniqueNumbersRule.validate(new HouseNumbers(listWithUniqueNumbers)), is(true));
     }

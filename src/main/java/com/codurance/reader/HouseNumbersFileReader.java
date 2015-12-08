@@ -27,7 +27,7 @@ public class HouseNumbersFileReader {
     private List<Integer> convertToIntegerList(String[] houseNumbersStringArray) {
         List<Integer> houseNumbersList = new ArrayList<>();
 
-        for(String houseNumberAsString : houseNumbersStringArray) {
+        for (String houseNumberAsString : houseNumbersStringArray) {
             houseNumbersList.add(Integer.valueOf(houseNumberAsString));
         }
 

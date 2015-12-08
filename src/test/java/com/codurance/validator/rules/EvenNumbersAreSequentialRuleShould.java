@@ -20,14 +20,14 @@ public class EvenNumbersAreSequentialRuleShould {
 
     @Test
     public void returnFalseIfOddNumbersAreNonSequential() {
-        List<Integer> nonSequentialEvenNumbersList = Arrays.asList(1,3,4,2,5);
+        List<Integer> nonSequentialEvenNumbersList = Arrays.asList(1, 3, 4, 2, 5);
 
         assertThat(evenNumbersAreSequentialRule.validate(new HouseNumbers(nonSequentialEvenNumbersList)), is(false));
     }
 
     @Test
     public void returnTrueIfOddNumbersAreSequential() {
-        List<Integer> sequentialEvenNumbersList = Arrays.asList(1,3,2,4,5);
+        List<Integer> sequentialEvenNumbersList = Arrays.asList(1, 3, 2, 4, 5);
 
         assertThat(evenNumbersAreSequentialRule.validate(new HouseNumbers(sequentialEvenNumbersList)), is(true));
     }

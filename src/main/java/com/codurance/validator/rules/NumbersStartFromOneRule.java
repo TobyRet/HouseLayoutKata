@@ -1,4 +1,4 @@
-package com.codurance.rules;
+package com.codurance.validator.rules;
 
 import com.codurance.housenumbers.HouseNumbers;
 

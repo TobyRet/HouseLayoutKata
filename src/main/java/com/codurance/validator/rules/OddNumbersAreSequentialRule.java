@@ -1,13 +1,13 @@
-package com.codurance.rules;
+package com.codurance.validator.rules;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import com.codurance.housenumbers.HouseNumbers;
 
-public class EvenNumbersAreSequentialRule implements ValidationRule {
+public class OddNumbersAreSequentialRule implements ValidationRule {
     @Override
     public boolean validate(HouseNumbers houseNumbers) {
-        List<Integer> oddNumbers = filterEvenNumbers(houseNumbers.get());
+        List<Integer> oddNumbers = filterOddNumbers(houseNumbers.get());
 
         boolean isSequential = true;
 
@@ -20,10 +20,10 @@ public class EvenNumbersAreSequentialRule implements ValidationRule {
         return isSequential;
     }
 
-    private List<Integer> filterEvenNumbers(List<Integer> numberSequence) {
+    private List<Integer> filterOddNumbers(List<Integer> numberSequence) {
         return numberSequence
                 .stream()
-                .filter(number -> number % 2 == 0)
+                .filter(number -> number % 2 == 1)
                 .collect(Collectors.toList());
     }
 }

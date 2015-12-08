@@ -1,14 +1,14 @@
-package com.codurance.validation;
+package com.codurance.validator;
 
 import java.util.ArrayList;
 import java.util.List;
 import com.codurance.housenumbers.HouseNumbers;
-import com.codurance.rules.ValidationRules;
+import com.codurance.validator.rules.ValidationRules;
 
-public class HouseNumberValidator {
+public class HouseNumbersValidator {
     private final ValidationRules validationRules;
 
-    public HouseNumberValidator(ValidationRules validationRules) {
+    public HouseNumbersValidator(ValidationRules validationRules) {
         this.validationRules = validationRules;
     }
 

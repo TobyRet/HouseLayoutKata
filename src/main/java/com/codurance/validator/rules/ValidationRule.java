@@ -1,6 +1,5 @@
-package com.codurance.rules;
+package com.codurance.validator.rules;
 
-import java.util.List;
 import com.codurance.housenumbers.HouseNumbers;
 
 public interface ValidationRule {

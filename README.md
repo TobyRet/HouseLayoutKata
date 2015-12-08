@@ -1,4 +1,4 @@
-# Paper Round Kata
+# House Layout Kata
 
 ## User Stories
 

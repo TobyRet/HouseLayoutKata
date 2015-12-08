@@ -17,7 +17,7 @@ public class HouseNumberValidator {
         List<Boolean> validationChecks = new ArrayList();
 
         validationRules.get().stream()
-                .forEach(validationRule -> validationChecks.add(validationRule.validate(houseNumbers.get())));
+                .forEach(validationRule -> validationChecks.add(validationRule.validate(houseNumbers)));
 
         return !validationChecks.contains(false);
     }

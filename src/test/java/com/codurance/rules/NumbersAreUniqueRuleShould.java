@@ -1,6 +1,7 @@
 package com.codurance.rules;
 
 import java.util.List;
+import com.codurance.housenumbers.HouseNumbers;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,13 +22,13 @@ public class NumbersAreUniqueRuleShould {
     public void returnFalseIfNumbersAreNotUnique() {
         List<Integer> listWithDuplicateNumbers = asList(1, 3, 3, 2, 4, 5);
 
-        assertThat(uniqueNumbersRule.validate(listWithDuplicateNumbers), is(false));
+        assertThat(uniqueNumbersRule.validate(new HouseNumbers(listWithDuplicateNumbers)), is(false));
     }
 
     @Test
     public void returnTrueIfNumbersAreUnique() {
         List<Integer> listWithUniqueNumbers = asList(1,2,3,4,5);
 
-        assertThat(uniqueNumbersRule.validate(listWithUniqueNumbers), is(true));
+        assertThat(uniqueNumbersRule.validate(new HouseNumbers(listWithUniqueNumbers)), is(true));
     }
 }

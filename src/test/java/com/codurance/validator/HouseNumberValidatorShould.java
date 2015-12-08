@@ -51,10 +51,10 @@ public class HouseNumberValidatorShould {
                 mockedUniqueNumbersRule);
 
         given(validationRules.get()).willReturn(mockedValidationRules);
-        given(mockedNumbersStartFromOneRule.validate(houseNumbers.get())).willReturn(false);
-        given(mockedOddNumbersAreSequentialRule.validate(houseNumbers.get())).willReturn(true);
-        given(mockedEvenNumbersAreSequentialRule.validate(houseNumbers.get())).willReturn(true);
-        given(mockedUniqueNumbersRule.validate(houseNumbers.get())).willReturn(true);
+        given(mockedNumbersStartFromOneRule.validate(houseNumbers)).willReturn(false);
+        given(mockedOddNumbersAreSequentialRule.validate(houseNumbers)).willReturn(true);
+        given(mockedEvenNumbersAreSequentialRule.validate(houseNumbers)).willReturn(true);
+        given(mockedUniqueNumbersRule.validate(houseNumbers)).willReturn(true);
 
         assertThat(numberValidator.validate(houseNumbers), is(false));
     }
@@ -72,10 +72,10 @@ public class HouseNumberValidatorShould {
                 mockedUniqueNumbersRule);
 
         given(validationRules.get()).willReturn(mockedValidationRules);
-        given(mockedNumbersStartFromOneRule.validate(houseNumbers.get())).willReturn(true);
-        given(mockedOddNumbersAreSequentialRule.validate(houseNumbers.get())).willReturn(true);
-        given(mockedEvenNumbersAreSequentialRule.validate(houseNumbers.get())).willReturn(true);
-        given(mockedUniqueNumbersRule.validate(houseNumbers.get())).willReturn(true);
+        given(mockedNumbersStartFromOneRule.validate(houseNumbers)).willReturn(true);
+        given(mockedOddNumbersAreSequentialRule.validate(houseNumbers)).willReturn(true);
+        given(mockedEvenNumbersAreSequentialRule.validate(houseNumbers)).willReturn(true);
+        given(mockedUniqueNumbersRule.validate(houseNumbers)).willReturn(true);
 
         assertThat(numberValidator.validate(houseNumbers), is(true));
     }

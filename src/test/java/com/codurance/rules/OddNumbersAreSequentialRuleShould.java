@@ -2,6 +2,7 @@ package com.codurance.rules;
 
 import java.util.Arrays;
 import java.util.List;
+import com.codurance.housenumbers.HouseNumbers;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,13 +22,13 @@ public class OddNumbersAreSequentialRuleShould {
     public void returnFalseIfOddNumbersAreNonSequential() {
         List<Integer> nonSequentialOddNumbersList = Arrays.asList(1,5,2,4,3);
 
-        assertThat(oddNumbersAreSequentialRule.validate(nonSequentialOddNumbersList), is(false));
+        assertThat(oddNumbersAreSequentialRule.validate(new HouseNumbers(nonSequentialOddNumbersList)), is(false));
     }
 
     @Test
     public void returnTrueIfOddNumbersAreSequential() {
         List<Integer> sequentialOddNumbersList = Arrays.asList(1, 2, 3, 5, 4);
 
-        assertThat(oddNumbersAreSequentialRule.validate(sequentialOddNumbersList), is(true));
+        assertThat(oddNumbersAreSequentialRule.validate(new HouseNumbers(sequentialOddNumbersList)), is(true));
     }
 }

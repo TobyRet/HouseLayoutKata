@@ -6,6 +6,6 @@ public class TotalHousesCounter implements HousesCounter {
 
     @Override
     public int count(HouseNumbers houseNumbers) {
-        return houseNumbers.get().size();
+        return houseNumbers.countAll();
     }
 }

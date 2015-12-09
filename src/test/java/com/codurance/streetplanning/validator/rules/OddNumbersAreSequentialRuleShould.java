@@ -1,11 +1,10 @@
 package com.codurance.streetplanning.validator.rules;
 
-import java.util.Arrays;
-import java.util.List;
 import com.codurance.streetplanning.housenumbers.HouseNumbers;
 import org.junit.Before;
 import org.junit.Test;
 
+import static java.util.Arrays.asList;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
@@ -19,16 +18,16 @@ public class OddNumbersAreSequentialRuleShould {
     }
 
     @Test
-    public void returnFalseIfOddNumbersAreNonSequential() {
-        List<Integer> nonSequentialOddNumbersList = Arrays.asList(1, 5, 2, 4, 3);
+    public void fails_when_odd_numbers_are_non_sequential() {
+        HouseNumbers nonSequentialHouseNumbers = new HouseNumbers(asList(1, 5, 2, 4, 3));
 
-        assertThat(oddNumbersAreSequentialRule.validate(new HouseNumbers(nonSequentialOddNumbersList)), is(false));
+        assertThat(oddNumbersAreSequentialRule.validate(nonSequentialHouseNumbers), is(false));
     }
 
     @Test
-    public void returnTrueIfOddNumbersAreSequential() {
-        List<Integer> sequentialOddNumbersList = Arrays.asList(1, 2, 3, 5, 4);
+    public void succeeds_when_odd_numbers_are_sequential() {
+        HouseNumbers sequentialHouseNumbers = new HouseNumbers(asList(1, 2, 3, 4, 5));
 
-        assertThat(oddNumbersAreSequentialRule.validate(new HouseNumbers(sequentialOddNumbersList)), is(true));
+        assertThat(oddNumbersAreSequentialRule.validate(sequentialHouseNumbers), is(true));
     }
 }

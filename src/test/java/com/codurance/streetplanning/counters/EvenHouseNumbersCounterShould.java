@@ -10,7 +10,7 @@ import static org.junit.Assert.assertThat;
 public class EvenHouseNumbersCounterShould {
 
     @Test
-    public void countOddHouseNumbers() {
+    public void count_even_house_numbers() {
         EvenHouseNumberCounter evenHouseNumberCounter = new EvenHouseNumberCounter();
         HouseNumbers houseNumbers = new HouseNumbers(asList(1, 2, 3, 4, 5, 6, 7));
 

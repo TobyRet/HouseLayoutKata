@@ -1,13 +1,9 @@
 package com.codurance.streetplanning.validator;
 
-import java.util.List;
 import com.codurance.streetplanning.housenumbers.HouseNumbers;
-import com.codurance.streetplanning.validator.rules.EvenNumbersAreSequentialRule;
-import com.codurance.streetplanning.validator.rules.NumbersStartFromOneRule;
-import com.codurance.streetplanning.validator.rules.OddNumbersAreSequentialRule;
-import com.codurance.streetplanning.validator.rules.UniqueNumbersRule;
 import com.codurance.streetplanning.validator.rules.ValidationRule;
 import com.codurance.streetplanning.validator.rules.ValidationRules;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -17,65 +13,47 @@ import static java.util.Arrays.asList;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
 public class HouseNumberValidatorShould {
 
-    @Mock
-    EvenNumbersAreSequentialRule mockedEvenNumbersAreSequentialRule;
+    private static final HouseNumbers HOUSE_NUMBERS = new HouseNumbers(asList(1, 2, 3, 4, 5));
 
     @Mock
-    NumbersStartFromOneRule mockedNumbersStartFromOneRule;
-
+    ValidationRule validation_rule_1;
     @Mock
-    OddNumbersAreSequentialRule mockedOddNumbersAreSequentialRule;
+    ValidationRule validation_rule_2;
 
-    @Mock
-    UniqueNumbersRule mockedUniqueNumbersRule;
-
-    @Mock
-    ValidationRules validationRules;
+    private HouseNumbersValidator houseNumberValidator;
 
 
-    @Test
-    public void returnFalseIfNumberSequenceInvalid() {
-        HouseNumbersValidator numberValidator = new HouseNumbersValidator(validationRules);
-        List<Integer> houseNumbersDoNotStartAtOne = asList(2, 4, 1, 3, 5);
-        HouseNumbers houseNumbers = new HouseNumbers(houseNumbersDoNotStartAtOne);
-
-        List<ValidationRule> mockedValidationRules = asList(
-                mockedEvenNumbersAreSequentialRule,
-                mockedNumbersStartFromOneRule,
-                mockedOddNumbersAreSequentialRule,
-                mockedUniqueNumbersRule);
-
-        given(validationRules.get()).willReturn(mockedValidationRules);
-        given(mockedNumbersStartFromOneRule.validate(houseNumbers)).willReturn(false);
-        given(mockedOddNumbersAreSequentialRule.validate(houseNumbers)).willReturn(true);
-        given(mockedEvenNumbersAreSequentialRule.validate(houseNumbers)).willReturn(true);
-        given(mockedUniqueNumbersRule.validate(houseNumbers)).willReturn(true);
-
-        assertThat(numberValidator.validate(houseNumbers), is(false));
+    @Before
+    public void initialise() {
+        ValidationRules validationRules = new ValidationRules(asList(validation_rule_1, validation_rule_2));
+        houseNumberValidator = new HouseNumbersValidator(validationRules);
     }
 
     @Test
-    public void returnTrueIfNumberSequenceIsValid() {
-        HouseNumbersValidator numberValidator = new HouseNumbersValidator(validationRules);
-        List<Integer> houseNumbersDoNotStartAtOne = asList(2, 4, 1, 3, 5);
-        HouseNumbers houseNumbers = new HouseNumbers(houseNumbersDoNotStartAtOne);
+    public void confirm_house_numbers_are_valid_when_all_rules_are_satisfied() {
+        given(validation_rule_1.validate(HOUSE_NUMBERS)).willReturn(true);
+        given(validation_rule_2.validate(HOUSE_NUMBERS)).willReturn(true);
 
-        List<ValidationRule> mockedValidationRules = asList(
-                mockedEvenNumbersAreSequentialRule,
-                mockedNumbersStartFromOneRule,
-                mockedOddNumbersAreSequentialRule,
-                mockedUniqueNumbersRule);
+        assertThat(houseNumberValidator.validate(HOUSE_NUMBERS), is(true));
 
-        given(validationRules.get()).willReturn(mockedValidationRules);
-        given(mockedNumbersStartFromOneRule.validate(houseNumbers)).willReturn(true);
-        given(mockedOddNumbersAreSequentialRule.validate(houseNumbers)).willReturn(true);
-        given(mockedEvenNumbersAreSequentialRule.validate(houseNumbers)).willReturn(true);
-        given(mockedUniqueNumbersRule.validate(houseNumbers)).willReturn(true);
-
-        assertThat(numberValidator.validate(houseNumbers), is(true));
+        verify(validation_rule_1).validate(HOUSE_NUMBERS);
+        verify(validation_rule_2).validate(HOUSE_NUMBERS);
     }
+
+    @Test
+    public void confirm_house_numbers_are_invalid_when_at_least_one_rule_is_not_satisfied() {
+        given(validation_rule_1.validate(HOUSE_NUMBERS)).willReturn(true);
+        given(validation_rule_2.validate(HOUSE_NUMBERS)).willReturn(false);
+
+        assertThat(houseNumberValidator.validate(HOUSE_NUMBERS), is(false));
+
+        verify(validation_rule_1).validate(HOUSE_NUMBERS);
+        verify(validation_rule_2).validate(HOUSE_NUMBERS);
+    }
+
 }

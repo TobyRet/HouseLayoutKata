@@ -1,6 +1,5 @@
 package com.codurance.streetplanning.validator.rules;
 
-import java.util.List;
 import com.codurance.streetplanning.housenumbers.HouseNumbers;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,16 +18,16 @@ public class NumbersAreUniqueRuleShould {
     }
 
     @Test
-    public void returnFalseIfNumbersAreNotUnique() {
-        List<Integer> listWithDuplicateNumbers = asList(1, 3, 3, 2, 4, 5);
+    public void fails_if_house_numbers_are_not_unique() {
+        HouseNumbers houseNumbers = new HouseNumbers(asList(1, 3, 3, 2, 4, 5));
 
-        assertThat(uniqueNumbersRule.validate(new HouseNumbers(listWithDuplicateNumbers)), is(false));
+        assertThat(uniqueNumbersRule.validate(houseNumbers), is(false));
     }
 
     @Test
-    public void returnTrueIfNumbersAreUnique() {
-        List<Integer> listWithUniqueNumbers = asList(1, 2, 3, 4, 5);
+    public void succeeds_if_house_numbers_are_unique() {
+        HouseNumbers houseNumbers = new HouseNumbers(asList(1, 2, 3, 4, 5));
 
-        assertThat(uniqueNumbersRule.validate(new HouseNumbers(listWithUniqueNumbers)), is(true));
+        assertThat(uniqueNumbersRule.validate(houseNumbers), is(true));
     }
 }

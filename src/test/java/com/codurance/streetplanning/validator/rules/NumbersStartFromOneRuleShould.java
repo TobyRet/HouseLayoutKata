@@ -1,6 +1,5 @@
 package com.codurance.streetplanning.validator.rules;
 
-import java.util.List;
 import com.codurance.streetplanning.housenumbers.HouseNumbers;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,16 +19,16 @@ public class NumbersStartFromOneRuleShould {
     }
 
     @Test
-    public void returnTrueIfHouseNumberingStartsAtOne() {
-        List<Integer> correctNumberSequence = asList(1, 3, 2, 5, 4);
+    public void suceeds_if_house_numbers_start_from_one() {
+        HouseNumbers houseNumbers = new HouseNumbers(asList(1, 3, 2, 5, 4));
 
-        assertThat(numberingStartsAtOneRule.validate(new HouseNumbers(correctNumberSequence)), is(true));
+        assertThat(numberingStartsAtOneRule.validate(houseNumbers), is(true));
     }
 
     @Test
-    public void returnFalseIfHouseNumberingDoesNotStartAtOne() {
-        List<Integer> incorrectNumberSequence = asList(3, 2, 5, 4);
+    public void fails_if_house_numbers_do_not_start_from_one() {
+        HouseNumbers houseNumbers = new HouseNumbers(asList(3, 2, 5, 4));
 
-        assertThat(numberingStartsAtOneRule.validate(new HouseNumbers(incorrectNumberSequence)), is(false));
+        assertThat(numberingStartsAtOneRule.validate(houseNumbers), is(false));
     }
 }

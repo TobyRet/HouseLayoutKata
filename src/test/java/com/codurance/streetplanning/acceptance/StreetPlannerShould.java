@@ -56,14 +56,23 @@ public class StreetPlannerShould {
     }
 
     @Test
-    public void count_houses_in_a_file() {
+    public void count_total_houses_in_a_file() {
         String pathToFile = VALID_HOUSE_NUMBERS_FILE;
 
-        String expectedResponse =
-                "Total: 5\n" +
-                "Even: 3\n" +
-                "Odd: 2\n";
+        assertThat(streetPlanner.countTotalHouses(pathToFile), is(5));
+    }
 
-        assertThat(streetPlanner.countHouses(pathToFile), is(expectedResponse));
+    @Test
+    public void count_even_houses_in_a_file() {
+        String pathToFile = VALID_HOUSE_NUMBERS_FILE;
+
+        assertThat(streetPlanner.countEvenNumberHouses(pathToFile), is(2));
+    }
+
+    @Test
+    public void count_odd_houses_in_a_file() {
+        String pathToFile = VALID_HOUSE_NUMBERS_FILE;
+
+        assertThat(streetPlanner.countOddNumberHouses(pathToFile), is(3));
     }
 }
